@@ -1,6 +1,11 @@
 class MoviesController < ApplicationController
+	before_action :find_movie, only: [:show, :edit, :update, :destroy]
 	def index
 		@movie = Movie.all.order("created_at DESC")
+	end
+
+	def show
+		
 	end
 
 	def new
@@ -15,6 +20,10 @@ class MoviesController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+	
+	def find_movie
+		@movie = Movie.find(params[:id])
 	end
 
 
