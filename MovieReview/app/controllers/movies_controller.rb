@@ -9,11 +9,32 @@ class MoviesController < ApplicationController
 	end
 
 	def new
-		@movie = Movie.new
+		@movie = current_user.movies.build
+		@categories =Category.all.map{ |c| [c.name, c.id] }
+	end
+
+	def edit
+
+	end
+
+	def update
+		if @movie.update(movie_params)
+			redirect_to movie_path(@movie)
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@movie.destroy
+		redirect_to root_path
+		
+
 	end
 
 	def create
-		@movie = Movie.new(movie_params)
+		@movie = current_user.movies.build(movie_params)
+		@movie.category_id = params[:category_id]
 
 		if @movie.save
 			redirect_to root_path
@@ -29,7 +50,7 @@ class MoviesController < ApplicationController
 
 	private
 	def movie_params
-		params.require(:movie).permit(:title, :description, :director)
+		params.require(:movie).permit(:title, :description, :director, :category_id)
 	end
 end
 

@@ -1,6 +1,7 @@
 <%= simple_form_for @movie do |f| %>
-<%= f.input :title, label: "Movie title"  %>
-<%= f.input :description %>
-<%= f.input :director, label: "Director" %>
+<%= select_tag(:category_id, options_for_select(@categories), :prompt =>"Select category")%>
+<%= f.input :title, label: "Movie title", :required => true %>
+<%= f.input :description, :required => true,  autofocus: true %>
+<%= f.input :director,:required => true, autofocus: true, label: "Director" %>
 <%= f.button :submit %>
 <% end  %>
