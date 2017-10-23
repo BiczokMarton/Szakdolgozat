@@ -1,10 +1,13 @@
 <h2><%= @movie.title %></h2>
 <h3><%= @movie.director %></h3>
-<h4><%= @movie.category.name %></h4>
+<h4>Category: <%= @movie.category.name %></h4>
 <p><%= @movie.description %></p>
 <%= link_to "Back",root_path%>
-<% @id =current_user.id  %>
+<% if user_signed_in? %>
+
 <%if @movie.user_id == current_user.id || @id==1 #1 lesz az én id-m mint admin [ne változtassam!!!!!]%>
 <%= link_to "Edit",edit_movie_path(@movie)%>
+
 <%= link_to "Delete",movie_path(@movie), method: :delete,data: {confirm: "Are you sure?"} %>
+<% end %>
 <% end %>

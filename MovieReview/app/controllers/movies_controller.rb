@@ -1,7 +1,14 @@
 class MoviesController < ApplicationController
 	before_action :find_movie, only: [:show, :edit, :update, :destroy]
 	def index
-		@movie = Movie.all.order("created_at DESC")
+
+		if params[:category].blank?
+			@movie = Movie.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@movie = Movie.where(category_id => @category_id).order("created_at DESC")
+		end
+
 	end
 
 	def show
@@ -14,13 +21,15 @@ class MoviesController < ApplicationController
 	end
 
 	def edit
-
+		@categories =Category.all.map{ |c| [c.name, c.id] }
 	end
 
 	def update
+		@movie.category_id = params[:category_id]
 		if @movie.update(movie_params)
 			redirect_to movie_path(@movie)
 		else
+
 			render 'edit'
 		end
 	end
