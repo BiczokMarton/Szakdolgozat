@@ -1,3 +1,4 @@
+<h1 calss="current-category" > <%=params[:category] %> Movies</h1>
 <% @movie.each do |movie|%>
 	<h2> <%= link_to movie.title, movie_path(movie)%> </h2>
 	

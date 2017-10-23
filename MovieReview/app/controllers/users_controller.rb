@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	else
 		redirect_to movie_path, :notice => 'wrong'
 	end
-  end
+  
   private secure_params
   	params.require(:user).permit(:role)
   end
