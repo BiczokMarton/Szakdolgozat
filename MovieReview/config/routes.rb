@@ -6,7 +6,10 @@ devise_for :users, :controllers => { registrations: 'registrations' }
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
+  resources :movies do
+  	resources :reviews
+  end
 
-  resources :movies, :users
   root 'movies#index'
 end

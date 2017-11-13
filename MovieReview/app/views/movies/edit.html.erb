@@ -1,6 +1,7 @@
 <h1>Edit movie</h1>
 <%= simple_form_for @movie, :html =>{ :multipart =>true } do |f| %>
 <p><b>Category: </b><%= f.select :category_id, @categories%></p>
+<%= f.file_field :movie_img%>
 <%= f.input :title, label: "Movie title", :required => true %>
 <%= f.input :description, :required => true,  autofocus: true %>
 <%= f.input :director,:required => true, autofocus: true, label: "Director" %>

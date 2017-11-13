@@ -15,3 +15,39 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+	background-image: url(/assets/background.jpg);
+	background-repeat: no-repeat;
+background-position: center center;
+background-attachment: fixed;
+background-size: cover;
+}
+.movie {
+	height:200px;
+	width: auto;
+
+}
+
+.movie_show {
+	height:auto;
+	width: 300px;
+
+}
+.movie_frame {
+	height:250px;
+	width: 300px;
+	vertical-align: middle; 
+  	text-align: center; 
+}
+
+.inside {
+	
+	width: 100%;
+  vertical-align: middle; 
+  text-align: center; 
+}
+footer{
+	background-color: #000002;
+	color: #E4F2FA;
+}

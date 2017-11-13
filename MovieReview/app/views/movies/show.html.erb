@@ -1,13 +1,39 @@
-<h2><%= @movie.title %></h2>
-<h3><%= @movie.director %></h3>
-<h4>Category: <%= @movie.category.name %></h4>
-<p><%= @movie.description %></p>
 <%= link_to "Back",root_path%>
-<% if user_signed_in? %>
-<% id = current_user.id  %>
-<%if @movie.user_id == current_user.id || id==1 %>
-<%= link_to "Edit",edit_movie_path(@movie)%>
-<p><%=  %> </p>
-<%= link_to "Delete",movie_path(@movie), method: :delete,data: {confirm: "Are you sure?"} %>
-<% end %>
-<% end %>
+<div class="row">
+	<div class="col-md-4">
+		<%= image_tag @movie.movie_img.url(:movie_show), class:"movie_show"%>
+		<%if current_user %>
+		<div> <%=link_to "Add review", new_movie_review_path(@movie) %></div>
+		<%end%>
+		<% if user_signed_in? %>
+			<% id = current_user.id  %>
+			<%if @movie.user_id == current_user.id || id==1 %>
+				<%= link_to "Edit",edit_movie_path(@movie)%>
+				<p><%=  %> </p>
+				<%= link_to "Delete",movie_path(@movie), method: :delete,data: {confirm: "Are you sure?"} %>
+			<% end %>
+		<% end %>
+		<%= render @movie.reviews%>
+	</div>
+	<div class="col-md-8">
+		<h2><%= @movie.title %></h2>
+		<h3><%= @movie.director %></h3>
+		<h3>Average Rating:</h3>
+			<div class="average" data-score=<%= @average %>></div>
+		<h4>Category: <%= @movie.category.name %></h4>
+		<p><%= @movie.description %></p>
+	</div>
+
+
+
+</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>

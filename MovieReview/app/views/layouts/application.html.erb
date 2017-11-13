@@ -80,17 +80,30 @@
   <p class="alert"><%= alert %></p>
 
 
-    <footer class="footer">
+
+
+<div class="container">
+<%= yield %>
+</div>
+
+    <footer role="contentinfo">
       <div class="container">
         <span class="text-muted">Biczók Márton - 2017 - Szegedi Tudományegyetem</span>
       </div>
     </footer>
-    <%= yield %>
-
-
-
 
 
 </body>
+
+
+<script>
+  $('.average').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
 
 </html>
