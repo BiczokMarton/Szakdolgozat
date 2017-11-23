@@ -13,15 +13,20 @@
 				<%= link_to "Delete",movie_path(@movie), method: :delete,data: {confirm: "Are you sure?"} %>
 			<% end %>
 		<% end %>
-		<%= render @movie.reviews%>
+		
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-4">
 		<h2><%= @movie.title %></h2>
 		<h3><%= @movie.director %></h3>
 		<h3>Average Rating:</h3>
 			<div class="average" data-score=<%= @average %>></div>
+			<span> <%= @movie.reviews.count%> rating</span>
 		<h4>Category: <%= @movie.category.name %></h4>
-		<p><%= @movie.description %></p>
+		<p class="movie-desc"><%= @movie.description %></p>
+	</div>
+
+	<div class="col-md-4">
+		<%= render @movie.reviews%>
 	</div>
 
 

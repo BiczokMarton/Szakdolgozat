@@ -1,3 +1,5 @@
+<div class = "review">
+<%= link_to review.user.firstname + " " + review.user.surname, user_path(review.user.id) %>
 <div class = "review-rating" data-score= "<%= review.rating %>"" ></div>
 <p><%= review.comment 	%></p>
 
@@ -8,3 +10,4 @@
 		<%= link_to "Delete",movie_review_path(review.movie,review), method: :delete,data: {confirm: "Are you sure?"} %>
 	<% end %>
 <% end %>
+</div>

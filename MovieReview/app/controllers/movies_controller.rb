@@ -1,5 +1,11 @@
 class MoviesController < ApplicationController
+
+	before_action :authenticate_user!, only: [:new, :edit, :destroy]
+
+	
 	before_action :find_movie, only: [:show, :edit, :update, :destroy]
+	
+
 	def index
 
 		if params[:category].blank?

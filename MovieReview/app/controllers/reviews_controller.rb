@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+before_action :authenticate_user!, only: [:new, :edit, :destroy]
+	
 before_action :find_movie
 before_action :find_review , only:[:edit, :update, :destroy]
 
@@ -48,4 +50,7 @@ before_action :find_review , only:[:edit, :update, :destroy]
 			@review= Review.find(params[:id])
 		end
 
+		def find_user
+			@user=User.find(params[:user_id])
+		end
 end

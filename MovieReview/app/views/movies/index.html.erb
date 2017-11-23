@@ -2,14 +2,18 @@
 <div class="row">
 <% @movie.each do |movie|%>
 	<div class="col-md-4">
-		<div class=movie_frame>
-		<a href="/movies/<%=movie.id%>">
-			<%= image_tag movie.movie_img.url(:movie_index), class:"movie"%>
-		</a>
-		<div class="inside">
-	 		<%=movie.title%>
-	 	</div>
-	</div>
+		<div class="movie_frame">
+			<div class="index_img">
+				<a href="/movies/<%=movie.id%>">
+					<%= image_tag movie.movie_img.url(:movie_index), class:"movie"%>
+				</a>
+			</div>
+			
+			<div class="inside">
+	 			<%=movie.title%>
+
+	 		</div>
+		</div>
 	</div>
 
 <%end%>

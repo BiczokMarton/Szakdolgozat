@@ -16,29 +16,64 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-	background-image: url(/assets/background.jpg);
-	background-repeat: no-repeat;
-background-position: center center;
-background-attachment: fixed;
-background-size: cover;
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Lora');
+
+
+@mixin back_shadow {
+	box-sizing: border-box;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 5px 6px #ccc;
+	padding: 1.5em 1.25em;
 }
+
+
+body {
+	background-color: #f5f5f5;
+	font-family: 'Audiowide', serif;
+
+}
+
+
 .movie {
 	height:200px;
 	width: auto;
+
 
 }
 
 .movie_show {
 	height:auto;
 	width: 300px;
+	@include back_shadow;
 
 }
+
+.index_img{
+	width: 265px;
+	vertical-align: middle; 
+  	text-align: center; 
+  	overflow: hidden;
+
+}
+
 .movie_frame {
 	height:250px;
 	width: 300px;
 	vertical-align: middle; 
   	text-align: center; 
+  	overflow: hidden;
+  	@include back_shadow;
+  	margin-bottom: 40px;
+
+}
+
+.movie-desc {
+		font-family: 'Lora', serif;
+		font-size: 1.05em;
+		line-height: 1.5;
+		margin-bottom: 15px;
+		margin-top: 15px;
 }
 
 .inside {
@@ -47,7 +82,33 @@ background-size: cover;
   vertical-align: middle; 
   text-align: center; 
 }
+
+.movie_frame_user {
+	height:auto;
+	width: 300px;
+	vertical-align: middle; 
+  	text-align: center; 
+  	overflow: hidden;
+  	@include back_shadow;
+}
+.commentAndRating{
+	
+	width: 300px;
+	height:auto;
+	vertical-align: middle; 
+  text-align: center;  
+}
+
 footer{
+	
 	background-color: #000002;
 	color: #E4F2FA;
+	width: 100%;
+  	vertical-align: middle; 
+ 	 text-align: center;
 }
+
+td{
+	width: 50%;
+}
+

@@ -76,8 +76,6 @@
 
   </nav>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
 
 
@@ -87,9 +85,9 @@
 </div>
 
     <footer role="contentinfo">
-      <div class="container">
-        <span class="text-muted">Biczók Márton - 2017 - Szegedi Tudományegyetem</span>
-      </div>
+      
+        <span class="text-muted">Készítette: Biczók Márton </span>
+    
     </footer>
 
 
@@ -104,6 +102,12 @@
       return $(this).attr('data-score')
     }
   });
+</script>
+
+<script>
+    $(document).scroll(function() {
+        $("#navbar").toggleClass("tiny",$(document). scrollTop() > 50);
+    });
 </script>
 
 </html>

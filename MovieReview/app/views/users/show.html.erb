@@ -1,2 +1,52 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<div class="row">
+<div class="col-md-4">
+	<%= link_to "Back",root_path%>
+<!--ide majd a képet, ha lesz-->
+	<h2><%= @user.firstname %> <%= @user.surname %> </h2>
+	<h3><%= @user.email %></h3>
+
+	<h3><%= @user.current_sign_in_at %></h3>
+
+</div>
+
+<div class="col-md-8">
+	
+		
+	<% @reviews.each do |review|%>
+	<div>
+		<div class=movie_frame_user>
+			<a href="/movies/<%=review.movie.id%>">
+				<%= image_tag review.movie.movie_img.url(:movie_index), class:"movie"%>
+			</a>
+			<div class="inside">
+	 			<%=review.movie.title%>
+	 			
+
+	 		</div>
+	 		
+
+		</div>
+
+		<div class="commentAndRating">
+			<div class = "review-rating" data-score= "<%= review.rating %>"" ></div>
+	 		<%=review.comment%>
+	 </div>
+	</div>	
+
+	<%end%>
+
+
+
+</div>
+</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
