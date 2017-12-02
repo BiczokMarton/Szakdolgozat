@@ -42,7 +42,7 @@ body {
 
 }
 
-.movie_show {
+.cover {
 	height:auto;
 	width: 300px;
 	@include back_shadow;
@@ -58,7 +58,7 @@ body {
 }
 
 .movie_frame {
-	height:250px;
+	height:300px;
 	width: 300px;
 	vertical-align: middle; 
   	text-align: center; 
@@ -90,6 +90,7 @@ body {
   	text-align: center; 
   	overflow: hidden;
   	@include back_shadow;
+  	margin-bottom: 40px;
 }
 .commentAndRating{
 	

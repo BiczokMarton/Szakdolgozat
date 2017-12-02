@@ -1,20 +1,54 @@
 <h1 calss="current-category" > <%=params[:category] %> Movies</h1>
 <div class="row">
 <% @movie.each do |movie|%>
+
+
+		<%if movie.reviews.blank?%>
+		<%	average = 0%>
+		<%else%>
+		<%average = movie.reviews.average(:rating).round(2)%>
+		<%	end%>
+
+<script>
+  function apiCall() {	
+  	$.getJSON('https://www.omdbapi.com/?t='+ encodeURI('<%=movie.title%>')+'&apikey=847f91b9').then(function(response){
+  		var image=response.Poster;
+  		$('.movie<%=movie.id%>').attr('src',image);
+  	})	
+  }
+apiCall()
+ </script>
+
 	<div class="col-md-4">
 		<div class="movie_frame">
 			<div class="index_img">
 				<a href="/movies/<%=movie.id%>">
-					<%= image_tag movie.movie_img.url(:movie_index), class:"movie"%>
+					<img class='movie<%=movie.id%>' src="/assets/notavailable.jpg" height="200" width= "auto">
+					
 				</a>
 			</div>
 			
 			<div class="inside">
 	 			<%=movie.title%>
+	 			<div class="average" data-score=<%= average %> ></div>
 
 	 		</div>
-		</div>
-	</div>
+	 		
 
+		</div>
+
+	</div>
 <%end%>
 </div>
+
+<script>
+	$('.average').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+

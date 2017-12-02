@@ -16,22 +16,24 @@
 	<% @reviews.each do |review|%>
 	<div>
 		<div class=movie_frame_user>
+			<div class="index_img">
 			<a href="/movies/<%=review.movie.id%>">
 				<%= image_tag review.movie.movie_img.url(:movie_index), class:"movie"%>
 			</a>
+			</div>
 			<div class="inside">
 	 			<%=review.movie.title%>
-	 			
+
+			<div class = "review-rating" data-score= "<%= review.rating %>"" ></div>
+	 		<%=review.comment%>
+	 		
 
 	 		</div>
 	 		
 
 		</div>
 
-		<div class="commentAndRating">
-			<div class = "review-rating" data-score= "<%= review.rating %>"" ></div>
-	 		<%=review.comment%>
-	 </div>
+
 	</div>	
 
 	<%end%>
