@@ -1,4 +1,6 @@
-<%= link_to "Back",root_path%>
+<a href="/movies/">
+<img class='backbutton' src="/assets/back.jpg" >
+</a>
 <script>
  
 
@@ -13,7 +15,7 @@ apiCall()
 <div class="row">
 	<div class="col-md-4">
 		<img class='cover' src="/assets/notavailable.jpg">
-		<%= image_tag @movie.movie_img.url(:movie_show), class:"movie_show"%>
+		
 		<%if current_user %>
 		<div> <%=link_to "Add review", new_movie_review_path(@movie) %></div>
 		<%end%>

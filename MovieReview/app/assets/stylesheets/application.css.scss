@@ -33,7 +33,13 @@ body {
 	font-family: 'Audiowide', serif;
 
 }
+.backbutton{
+	height:45px;
+	width: 45px;
+	margin-bottom: 15px;
+	margin-top: 15px;
 
+}
 
 .movie {
 	height:200px;
@@ -49,13 +55,6 @@ body {
 
 }
 
-.index_img{
-	width: 265px;
-	vertical-align: middle; 
-  	text-align: center; 
-  	overflow: hidden;
-
-}
 
 .movie_frame {
 	height:300px;
@@ -85,8 +84,7 @@ body {
 
 .movie_frame_user {
 	height:auto;
-	width: 300px;
-	vertical-align: middle; 
+	width: 300px; 
   	text-align: center; 
   	overflow: hidden;
   	@include back_shadow;

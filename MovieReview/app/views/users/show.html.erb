@@ -14,13 +14,21 @@
 	
 		
 	<% @reviews.each do |review|%>
-	<div>
+	
+		<script>
+  			function apiCall() {	
+ 			 	$.getJSON('https://www.omdbapi.com/?t='+ encodeURI('<%=review.movie.title%>')+'&apikey=847f91b9').then(function(response){
+  				var image=response.Poster;
+  			$('.index_img<%=review.movie.id%>').attr('src',image);
+  				})	
+ 			 }
+			apiCall()
+		</script>
 		<div class=movie_frame_user>
-			<div class="index_img">
+
 			<a href="/movies/<%=review.movie.id%>">
-				<%= image_tag review.movie.movie_img.url(:movie_index), class:"movie"%>
+				<img class="index_img<%=review.movie.id%>" src="/assets/notavailable.jpg" height="200" width= "auto">
 			</a>
-			</div>
 			<div class="inside">
 	 			<%=review.movie.title%>
 
@@ -29,8 +37,6 @@
 	 		
 
 	 		</div>
-	 		
-
 		</div>
 
 
@@ -41,7 +47,7 @@
 
 
 </div>
-</div>
+
 
 <script>
 	$('.review-rating').raty({
