@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171203170456) do
     t.datetime "updated_at", null: false
     t.string "firstname"
     t.string "surname"
+    t.text "about_me"
     t.string "user_img_file_name"
     t.string "user_img_content_type"
     t.integer "user_img_file_size"

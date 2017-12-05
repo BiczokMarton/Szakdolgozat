@@ -1,7 +1,10 @@
+<%= paginate @rev %>
+
 <div class = "review">
+
 <%= link_to review.user.firstname + " " + review.user.surname, user_path(review.user.id) %>
 <div class = "review-rating" data-score= "<%= review.rating %>"" ></div>
-<p><%= review.comment 	%></p>
+<p class="review_comment"><%= review.comment 	%></p>
 
 <% if user_signed_in? %>
 	<% id = current_user.id  %>

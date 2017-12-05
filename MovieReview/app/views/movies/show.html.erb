@@ -1,21 +1,14 @@
 <a href="/movies/">
-<img class='backbutton' src="/assets/back.jpg" >
+	<img class='backbutton' src="/assets/back.jpg" >
 </a>
-<script>
- 
 
-  function apiCall() {	
-  	$.getJSON('https://www.omdbapi.com/?t='+ encodeURI('<%=@movie.title%>')+'&apikey=847f91b9').then(function(response){
-  		var image=response.Poster;
-  		$('.cover').attr('src',image);
-  	})	
-  }
-apiCall()
- </script>
 <div class="row">
 	<div class="col-md-4">
-		<img class='cover' src="/assets/notavailable.jpg">
-		
+		<img class='cover' src="<%=@image%>">
+		<a href="http://www.imdb.com/title/<%=@imdbID%>/">
+					<img class="imdb_logo" src="/assets/imdb-logo.png">
+					
+				</a>
 		<%if current_user %>
 		<div> <%=link_to "Add review", new_movie_review_path(@movie) %></div>
 		<%end%>
@@ -31,29 +24,21 @@ apiCall()
 	</div>
 	<div class="col-md-4">
 		<h2><%= @movie.title %></h2>
-		<h3 id="director">
-			<script>  function director() {	
-  				$.getJSON('https://www.omdbapi.com/?t='+ encodeURI('<%=@movie.title%>')+'&apikey=847f91b9'	).then(function(response){
-  					
-  					return response.Director;
-  					
-  					
-  				
- 		 		})	
- 			 }
- 			 console.log(JSON.stringify(director()));
-			document.getElementById("director").innerHTML = JSON.stringify(director());
-
-		</script></h3>
+		<h4><%= @runtime%></h4>
+		<h3>Director: <%= @director %></h3>
+		<h4> <%= @year %></h4>
+		<h4>Category: <%= @genre %></h4>
 		<h3>Average Rating:</h3>
 			<div class="review-rating" data-score=<%= @average %>></div>
 			<span> <%= @movie.reviews.count%> rating (<%= @average %>)</span>
-		<h4>Category: <%= @movie.category.name %></h4>
-		<p class="movie-desc"><%= @movie.description %></p>
+		
+		<h4>Actors: <%= @actors%></h4>
+		<p class="movie-desc"> <%=@description%></p>
+		
 	</div>
 
-	<div class="col-md-4">
-		<%= render @movie.reviews%>
+	<div class="col-md-4" id="movie_reviews">
+		<%= render @rev%>
 	</div>
 
 

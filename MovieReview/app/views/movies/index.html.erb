@@ -1,5 +1,6 @@
 <h1 calss="current-category" > <%=params[:category] %> Movies</h1>
 <div class="row">
+	
 <% @movie.each do |movie|%>
 
 
@@ -40,7 +41,7 @@ apiCall()
 	</div>
 <%end%>
 </div>
-
+<%= paginate @movie %>
 <script>
 	$('.average').raty({
 		readOnly: true,

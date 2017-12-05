@@ -1,18 +1,16 @@
 class MoviesController < ApplicationController
-
 	before_action :authenticate_user!, only: [:new, :edit, :destroy]
-
-	
 	before_action :find_movie, only: [:show, :edit, :update, :destroy]
 	
 
 	def index
 
-		if params[:category].blank?
-			@movie = Movie.all.order("created_at DESC")
+		if params[:categoria].blank?
+			@movie = Movie.all.order("created_at DESC").page(params[:page]).per(3)
+
 		else
-			@category_id = Category.find_by(name: params[:category]).id
-			@movie = Movie.where(:category_id => @category_id).order("created_at DESC")
+			@category_id = Category.find_by(name: params[:categoria]).id
+			@movie = Movie.where(:category_id => @category_id).order("created_at DESC").page(params[:page]).per(12)
 		end
 
 	end
@@ -23,6 +21,19 @@ class MoviesController < ApplicationController
 		else
 			@average = @movie.reviews.average(:rating).round(2)
 		end
+		omdb = RestClient.get('https://www.omdbapi.com/', {params: {t: @movie.title, apikey: '847f91b9'}})
+		omdb=JSON.parse(omdb)
+		@image = omdb['Poster']
+		@director = omdb['Director']
+		@year = omdb['Year']
+		@genre = omdb['Genre']
+		@description = omdb['Plot']
+		@runtime = omdb['Runtime']
+		@actors = omdb['Actors']
+		@imdbID = omdb['imdbID']
+
+		@rev = @movie.reviews.page(params[:page]).per(10)
+
 	end
 
 	def new
@@ -69,7 +80,7 @@ class MoviesController < ApplicationController
 
 	private
 	def movie_params
-		params.require(:movie).permit(:title, :description, :director, :category_id, :movie_img)
+		params.require(:movie).permit(:title, :description, :director, :category_id)
 	end
 end
 

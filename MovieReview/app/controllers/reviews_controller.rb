@@ -22,6 +22,8 @@ before_action :find_review , only:[:edit, :update, :destroy]
 	def edit
 	end
 
+	
+
 	def update
 		
 

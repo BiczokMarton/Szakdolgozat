@@ -27,6 +27,12 @@
 	padding: 1.5em 1.25em;
 }
 
+.profile_tumb{
+	object-fit: cover; 
+  	margin-left: 15px;
+	height: 50px;
+	max-width: 50px;
+}
 
 body {
 	background-color: #f5f5f5;
@@ -52,8 +58,17 @@ body {
 	height:auto;
 	width: 300px;
 	@include back_shadow;
+	margin-bottom: 15px;
 
 }
+
+.imdb_logo{
+	height:30px;;
+	width: auto;
+	margin-bottom: 10px;
+}
+
+
 
 
 .movie_frame {
@@ -81,6 +96,15 @@ body {
   vertical-align: middle; 
   text-align: center; 
 }
+.profile_picture {
+	object-fit: cover; 
+  	object-position: center; 
+	max-height: 950px;
+	width: 100%;
+	@include back_shadow;
+	margin-bottom: 15px;
+
+}
 
 .movie_frame_user {
 	height:auto;
@@ -90,13 +114,15 @@ body {
   	@include back_shadow;
   	margin-bottom: 40px;
 }
-.commentAndRating{
-	
-	width: 300px;
-	height:auto;
-	vertical-align: middle; 
-  text-align: center;  
+
+.review_comment{
+	font-family: 'Lora', serif;
 }
+#movie_reviews {
+	overflow-wrap: break-word;
+}
+
+
 
 footer{
 	

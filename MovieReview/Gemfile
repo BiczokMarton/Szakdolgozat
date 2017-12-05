@@ -20,7 +20,9 @@ gem 'jquery-rails'
 gem 'devise', '~> 4.3'
 gem 'bcrypt', platforms: :ruby
 gem 'paperclip', '~> 5.1'
-gem 'mailboxer', '~> 0.15.1' 
+#gem 'mailboxer', '~> 0.15.1' 
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
+gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
