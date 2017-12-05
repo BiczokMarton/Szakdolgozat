@@ -35,8 +35,10 @@
 	
 	</div>
 	</div>	
+
+	<h3><%= @user.firstname %>'s reviews:<h3>
 	<div class="row">
-	
+		
 		<% @reviews.each do |review|%>
 	
 		<div class="col-md-4">
@@ -66,10 +68,11 @@
 		</div>
 		<%end%>
 
-
+	
 	
 
 </div>
+<%= paginate @reviews %>
 
 
 

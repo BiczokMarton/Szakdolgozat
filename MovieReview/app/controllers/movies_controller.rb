@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
 		@actors = omdb['Actors']
 		@imdbID = omdb['imdbID']
 
-		@rev = @movie.reviews.page(params[:page]).per(10)
+		@rev = @movie.reviews.page(params[:page]).per(6)
 
 	end
 

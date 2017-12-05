@@ -1,10 +1,24 @@
-<%= paginate @rev %>
 
-<div class = "review">
+<table class = "review">
+	<tr>
+	<th id="asd" >
+		<% if review.user.user_img.file? %>
+          <li>
+             <%= image_tag review.user.user_img.url(:user_index), :class => "review_tumb"%>
+           </li>
+        <% else %>
+          <li><img class='profile_tumb' src="/assets/default-user.png" >
+          </li>
+        <% end %>
+		
+	</th>
+
+
+<th >
 
 <%= link_to review.user.firstname + " " + review.user.surname, user_path(review.user.id) %>
-<div class = "review-rating" data-score= "<%= review.rating %>"" ></div>
-<p class="review_comment"><%= review.comment 	%></p>
+<div class = "review-rating" data-score= "<%= review.rating %>" ></div>
+<p class="review_comment"><%= review.comment %></p>
 
 <% if user_signed_in? %>
 	<% id = current_user.id  %>
@@ -13,4 +27,6 @@
 		<%= link_to "Delete",movie_review_path(review.movie,review), method: :delete,data: {confirm: "Are you sure?"} %>
 	<% end %>
 <% end %>
-</div>
+</th>
+</tr>
+</table>

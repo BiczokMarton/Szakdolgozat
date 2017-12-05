@@ -6,7 +6,7 @@ before_action :authenticate_user!
   end
 
   def show
-    @reviews=Review.where(:user_id => @user.id)
+    @reviews=Review.where(:user_id => @user.id).page(params[:page]).per(3)
 
   end
  
