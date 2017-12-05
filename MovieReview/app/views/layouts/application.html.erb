@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse ">
 
     <div class="container-static">
 
@@ -31,7 +31,7 @@
       </div>
       
 
-      <div id="navbar" class="navbar-collapse collapse">
+      <div id="navbar" class="navbar-collapse collapse ">
       <ul class="nav navbar-nav">
 
         <% if user_signed_in? %>
@@ -44,17 +44,28 @@
           <ul class="dropdown-menu" role="menu">
             <% Category.all.each do |category| %>
               <li class="<%= 'active' if params[:category] == category.name %>">
-                 <%= link_to category.name, movies_path(categoria: category.name), class: "link" %>
+                 <%= link_to category.name, movies_path(category: category.name), class: "link" %>
               </li>
             <% end %>
 
           </ul>  
       </li>
-        
-      </ul>
 
+      <li>
+      <%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-left", role: "search," do%>
+      
+        <%= text_field_tag :title, params[:title], class: "form-control"%>
+        <%= submit_tag "Search", name: nil, class: "btn btn-default"%>
+        
+      
+      <% end%> 
+      </li>
+        
+      </ul >
+    
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown-header"><hr></li>
+
       <% if user_signed_in? %>
       
         <% if current_user.user_img.file? %>

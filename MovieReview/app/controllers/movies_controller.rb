@@ -5,15 +5,24 @@ class MoviesController < ApplicationController
 
 	def index
 
-		if params[:categoria].blank?
+		if params[:category].blank?
 			@movie = Movie.all.order("created_at DESC").page(params[:page]).per(3)
 
 		else
-			@category_id = Category.find_by(name: params[:categoria]).id
+			@category_id = Category.find_by(name: params[:category]).id
 			@movie = Movie.where(:category_id => @category_id).order("created_at DESC").page(params[:page]).per(12)
 		end
 
 	end
+
+	def search
+		if params[:title].present?
+			@movie= Movie.search(params[:title])
+			
+		else
+			@movie = Movie.all
+		end
+	end 
 
 	def show
 		if @movie.reviews.blank?
