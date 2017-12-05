@@ -17,8 +17,8 @@ class MoviesController < ApplicationController
 
 	def search
 		if params[:title].present?
-			@movie= Movie.search(params[:title])
-			
+			@movie= Movie.search(params[:title], fields: [:title])
+
 		else
 			@movie = Movie.all
 		end
