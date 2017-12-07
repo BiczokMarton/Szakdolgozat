@@ -13,11 +13,27 @@
 
 	
 	<div class="col-md-4">
-		<div class="user_index_img">
-				<a href="/users/<%=user.id%>">
-					<%= image_tag user.user_img.url(:user_show), :class => "profile_picture"%>
-				</a>
-			</div>
+		<a href="/users/<%=user.id%>">
+			<div class="movie_frame">
+				
+
+				<% if user.user_img.file? %>
+
+  					<%= image_tag user.user_img.url(:user_index), :class => "index_img_user"%>
+
+				<% else %>
+  					 <img class='index_img_user' src="/assets/default-user.png" >
+
+				<% end %>
+				
+				
+				<div class="inside">
+	 				<%= user.firstname %> <%= user.surname %>
+
+	 			</div>
+	 		</div>
+	 	</a>
 	</div>
+
 	<% end %>
 </div>

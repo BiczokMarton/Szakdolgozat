@@ -28,6 +28,16 @@
 	padding: 1.5em 1.25em;
 }
 
+.index_img_user{
+	object-fit: cover; 
+  	object-position: center; 
+	margin-bottom: 15px;
+	height: 200px;
+	max-width: 265px;
+	overflow: hidden;
+
+}
+
 .profile_tumb{
 	object-fit: cover; 
   	margin-left: 15px;

@@ -4,12 +4,13 @@
 <% @movie.each do |movie|%>
 
 	<div class="col-md-4">
+		<a href="/movies/<%=movie.id%>">
 		<div class="movie_frame">
 			<div class="index_img">
-				<a href="/movies/<%=movie.id%>">
+				
 					<img class='movie<%=movie.id%>' src="<%= @image[movie.id] %>" height="200" width= "auto">
 					
-				</a>
+				
 			</div>
 			
 			<div class="inside">
@@ -20,6 +21,7 @@
 	 		
 
 		</div>
+		</a>
 	</div>
 
 <%end%>
