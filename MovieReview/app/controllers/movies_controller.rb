@@ -8,27 +8,69 @@ class MoviesController < ApplicationController
 		if params[:category].blank?
 			@movie = Movie.all.order("created_at DESC").page(params[:page]).per(3)
 
+
 		else
 			@category_id = Category.find_by(name: params[:category]).id
 			@movie = Movie.where(:category_id => @category_id).order("created_at DESC").page(params[:page]).per(12)
 		end
-
+		@image = {}
+		@average = {}
+		@movie.each do |movie|
+			omdb = RestClient.get('https://www.omdbapi.com/', {params: {t: movie.title, apikey: '847f91b9'}})
+			omdb=JSON.parse(omdb)
+			@image[movie.id] = omdb['Poster']
+			if movie.reviews.blank?
+				@average[movie.id] = 0
+			else
+				sum = 0
+				i = 0
+				movie.reviews.each do |review|
+				 	next if review.rating.zero?
+				 	sum += review.rating
+				 	i += 1 
+				end
+				average = i.zero? ? 0 : sum / i 
+				@average[movie.id] = average.round(2)
+			end
+		end
 	end
 
 	def search
+
+		
 		if params[:title].present?
 			@movie= Movie.search(params[:title], fields: [:title])
+			
 
 		else
 			@movie = Movie.all
+
+
 		end
 	end 
+
+	def autocomplete
+	render json: Movie.search(params[:title], {
+      fields: ["title"],
+      match: :word_start,
+      load: false,
+      misspellings: {below: 5}
+    }).map(&:title)
+	end
 
 	def show
 		if @movie.reviews.blank?
 			@average = 0
 		else
-			@average = @movie.reviews.average(:rating).round(2)
+			sum = 0
+			i = 0		
+			@movie.reviews.each do |review|
+		 		next if review.rating.zero?
+		 		sum += review.rating
+				i += 1 
+			end
+			average = i.zero? ? 0 : sum / i 
+			@average = average.round(2)
 		end
 		omdb = RestClient.get('https://www.omdbapi.com/', {params: {t: @movie.title, apikey: '847f91b9'}})
 		omdb=JSON.parse(omdb)
@@ -65,6 +107,7 @@ class MoviesController < ApplicationController
 	end
 
 	def destroy
+		@movie.reviews.destroy_all
 		@movie.destroy
 		redirect_to root_path
 		

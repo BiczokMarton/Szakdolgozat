@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203170456) do
+ActiveRecord::Schema.define(version: 20171207192455) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171203170456) do
     t.string "user_img_content_type"
     t.integer "user_img_file_size"
     t.datetime "user_img_updated_at"
+    t.string "follows"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

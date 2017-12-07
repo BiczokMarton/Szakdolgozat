@@ -2,15 +2,18 @@ Rails.application.routes.draw do
   get 'users/index'
 
   get 'users/show'
-devise_for :users, :controllers => { registrations: 'registrations' }
+devise_for :users, controllers: { registrations: 'registrations' }
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
   resources :movies do
   	collection do 
-  		get 'search'
+  		get :search
   	end
+    collection do 
+      get :autocomplete
+    end
   	
   	resources :reviews
   end

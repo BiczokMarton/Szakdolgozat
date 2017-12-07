@@ -51,10 +51,10 @@
           </ul>  
       </li>
 
-      <li>
+      <li >
       <%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-left", role: "search," do%>
       
-        <%= text_field_tag :title, params[:title], class: "form-control"%>
+        <%= text_field_tag :title, params[:title],id: "title" , placeholder: "Movie search" ,class: "form-control", size: "10"%>
         <%= submit_tag "Search", name: nil, class: "btn btn-default"%>
         
       
@@ -67,7 +67,7 @@
         <li class="dropdown-header"><hr></li>
 
       <% if user_signed_in? %>
-      
+      <li><%= link_to "Users", users_path %></li>
         <% if current_user.user_img.file? %>
           <li>
              <%= image_tag current_user.user_img.url(:user_index), :class => "profile_tumb"%>

@@ -1,2 +1,23 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+
+<div class="row">
+<%= form_tag users_index_path, method: :get, class: "navbar-form navbar-left", role: "search," do%>
+      
+        <%= text_field_tag :query, params[:query] , placeholder: "User search" ,class: "form-control" %>
+        <%= submit_tag "Search", name: nil, class: "btn btn-default"%>
+        
+      
+      <% end%> 
+  </div>
+<div class="row">
+	<% @users.each do |user| %>
+
+	
+	<div class="col-md-4">
+		<div class="user_index_img">
+				<a href="/users/<%=user.id%>">
+					<%= image_tag user.user_img.url(:user_show), :class => "profile_picture"%>
+				</a>
+			</div>
+	</div>
+	<% end %>
+</div>

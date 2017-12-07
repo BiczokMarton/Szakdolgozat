@@ -9,25 +9,28 @@ before_action :find_review , only:[:edit, :update, :destroy]
 	end
 
 	def create
-		@review = Review.new(review_params)
+		create_params = review_params
+		create_params[:rating] = 0 if review_params[:rating] == ''
+		@error = ''
+		@review = Review.new(create_params)
 		@review.movie_id = @movie.id
 		@review.user_id = current_user.id
 		if @review.save
 			redirect_to movie_path(@movie)
 		else
+			@error = 'You already reviewd this movie!'
 			render 'new'
 		end
 	end
 
 	def edit
 	end
-
 	
 
 	def update
-		
-
-		if @review.update(review_params)
+		update_params = review_params
+		update_params[:rating] = 0 if review_params[:rating] == ''
+		if @review.update(update_params)
 			redirect_to movie_path(@movie)
 		else
 			render 'edit'

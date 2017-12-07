@@ -14,10 +14,14 @@
    <img class='profile_picture' src="/assets/default-user.png" >
 
 <% end %>
-
-
-
-	
+<%@follows.each do |follow|%>
+	<div>
+		<%=follow.firstname%>
+	</div>
+	<div>
+		<%=follow.email%>
+	</div>
+<%end%>
 	
 </div>
 
