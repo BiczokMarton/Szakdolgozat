@@ -1,23 +1,33 @@
 <div class="row">
 	<% @movie.each do |movie| %>
 
-	<script>
-  function apiCall() {	
-  	$.getJSON('https://www.omdbapi.com/?t='+ encodeURI('<%=movie.title%>')+'&apikey=847f91b9').then(function(response){
-  		var image=response.Poster;
-  		$('.movie<%=movie.id%>').attr('src',image);
-  	})	
-  }
-apiCall()
- </script>
 	<div class="col-md-4">
-		<div class="index_img">
-				<a href="/movies/<%=movie.id%>">
+		<a href="/movies/<%=movie.id%>">
+		<div class="movie_frame">
+			<div class="index_img">
+				<% if @image[movie.id].nil? %>
+
 					<img class='movie<%=movie.id%>' src="/assets/notavailable.jpg" height="200" width= "auto">
+				<% else%>
+					<img class='movie<%=movie.id%>' src="<%= @image[movie.id] %>" height="200" width= "auto">
+				<% end %>
 					
-				</a>
+					
+				
 			</div>
+			
+			<div class="inside">
+	 			<%=movie.title%>
+	 			<div class="average" data-score=<%= @average[movie.id] %> ></div>
+
+	 		</div>
+	 		
+
+		</div>
+		</a>
 	</div>
 	<% end %>
+	
 </div>
 
+<%= paginate @movie %>

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-		searchkick word_start: [:firstname, :surname]
+		searchkick word_middle: [:firstname, :surname]
 
 	def search_data
 		{

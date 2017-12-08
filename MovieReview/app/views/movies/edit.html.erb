@@ -4,6 +4,8 @@
 
 <%= f.input :title, label: "Movie title", :required => true %>
 
+<%= f.select :year, (1900..2017) %>
+
 
 <%= f.button :submit %>
 <% end  %>

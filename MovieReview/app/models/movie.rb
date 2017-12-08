@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-	searchkick word_start: [:title]
+	searchkick word_middle: [:title]
 
 	def search_data
 		{

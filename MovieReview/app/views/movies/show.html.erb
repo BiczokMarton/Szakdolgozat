@@ -4,7 +4,14 @@
 
 <div class="row">
 	<div class="col-md-4">
-		<img class='cover' src="<%=@image%>">
+
+		<% if @image.nil?  %>
+
+					<img class='cover' src="/assets/notavailable.jpg" height="200" width= "auto">
+				<% else%>
+					<img class='cover' src="<%= @image %>" height="200" width= "auto">
+				<% end %>
+
 		<a href="http://www.imdb.com/title/<%=@imdbID%>/">
 					<img class="imdb_logo" src="/assets/imdb-logo.png">
 					
